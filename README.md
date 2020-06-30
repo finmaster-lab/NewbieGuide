@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/huburt-Hu/NewbieGuide.svg)](https://jitpack.io/#huburt-Hu/NewbieGuide)
+[![](https://jitpack.io/v/finmaster-lab/NewbieGuide.svg)](https://jitpack.io/#finmaster-lab/NewbieGuide)
 
 
 # NewbieGuide
