@@ -1,9 +1,9 @@
 package com.app.hubert.guide.model;
 
 import android.graphics.RectF;
-import android.support.annotation.ColorInt;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
+import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.view.animation.Animation;
 
@@ -11,7 +11,6 @@ import com.app.hubert.guide.listener.OnHighlightDrewListener;
 import com.app.hubert.guide.listener.OnLayoutInflatedListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -71,12 +70,14 @@ public class GuidePage {
      */
     public GuidePage addHighLight(View view, HighLight.Shape shape, int round, int padding,
                                   @Nullable RelativeGuide relativeGuide) {
-        HighlightView highlight = new HighlightView(view, shape, round, padding);
-        if (relativeGuide != null) {
-            relativeGuide.highLight = highlight;
-            highlight.setOptions(new HighlightOptions.Builder().setRelativeGuide(relativeGuide).build());
+        if(view!=null) {
+            HighlightView highlight = new HighlightView(view, shape, round, padding);
+            if (relativeGuide != null) {
+                relativeGuide.highLight = highlight;
+                highlight.setOptions(new HighlightOptions.Builder().setRelativeGuide(relativeGuide).build());
+            }
+            highLights.add(highlight);
         }
-        highLights.add(highlight);
         return this;
     }
 
@@ -127,14 +128,16 @@ public class GuidePage {
     }
 
     public GuidePage addHighLightWithOptions(View view, HighLight.Shape shape, int round, int padding, HighlightOptions options) {
-        HighlightView highlight = new HighlightView(view, shape, round, padding);
-        if (options != null) {
-            if (options.relativeGuide != null) {
-                options.relativeGuide.highLight = highlight;
+        if(view!=null) {
+            HighlightView highlight = new HighlightView(view, shape, round, padding);
+            if (options != null) {
+                if (options.relativeGuide != null) {
+                    options.relativeGuide.highLight = highlight;
+                }
             }
+            highlight.setOptions(options);
+            highLights.add(highlight);
         }
-        highlight.setOptions(options);
-        highLights.add(highlight);
         return this;
     }
 

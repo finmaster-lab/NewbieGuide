@@ -114,11 +114,16 @@ public class GuideLayout extends FrameLayout {
                 if (Math.abs(upX - downX) < touchSlop && Math.abs(upY - downY) < touchSlop) {
                     List<HighLight> highLights = guidePage.getHighLights();
                     for (HighLight highLight : highLights) {
-                        RectF rectF = highLight.getRectF((ViewGroup) getParent());
-                        if (rectF.contains(upX, upY)) {
-                            notifyClickListener(highLight);
-                            return true;
+                        try {
+                            RectF rectF = highLight.getRectF((ViewGroup) getParent());
+                            if (rectF.contains(upX, upY)) {
+                                notifyClickListener(highLight);
+                                return true;
+                            }
+                        }catch (Exception e) {
+                            e.printStackTrace();
                         }
+
                     }
                     performClick();
                 }
@@ -140,9 +145,14 @@ public class GuideLayout extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int backgroundColor = guidePage.getBackgroundColor();
-        canvas.drawColor(backgroundColor == 0 ? DEFAULT_BACKGROUND_COLOR : backgroundColor);
-        drawHighlights(canvas);
+        try {
+            int backgroundColor = guidePage.getBackgroundColor();
+            canvas.drawColor(backgroundColor == 0 ? DEFAULT_BACKGROUND_COLOR : backgroundColor);
+            drawHighlights(canvas);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void drawHighlights(Canvas canvas) {
@@ -182,10 +192,14 @@ public class GuideLayout extends FrameLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        addCustomToLayout(guidePage);
-        Animation enterAnimation = guidePage.getEnterAnimation();
-        if (enterAnimation != null) {
-            startAnimation(enterAnimation);
+        try {
+            addCustomToLayout(guidePage);
+            Animation enterAnimation = guidePage.getEnterAnimation();
+            if (enterAnimation != null) {
+                startAnimation(enterAnimation);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
