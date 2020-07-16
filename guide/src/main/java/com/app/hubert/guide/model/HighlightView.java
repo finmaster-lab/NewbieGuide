@@ -55,7 +55,7 @@ public class HighlightView implements HighLight {
         if (mHole == null) {
             throw new IllegalArgumentException("the highlight view is null!");
         }
-        return Math.max(mHole.getWidth() / 2, mHole.getHeight() / 2) + padding;
+        return Math.max(rectF.width() / 2, rectF.height() / 2) + padding;
     }
 
     @Override
